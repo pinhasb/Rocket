@@ -352,6 +352,30 @@
                 r.style.display = city.includes(text) ? "" : "none";
             });
         });
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+    fetch("M_I.json")
+        .then(r => r.json())
+        .then(data => {
+
+            resetState();
+
+            const arr = normalizeToArray(data);
+
+            for (const a of arr) {
+                state.alerts.push(a);
+            }
+
+            processAlerts();
+            render();
+
+        })
+        .catch(err => {
+            console.error("Failed loading JSON:", err);
+        });
+
+});
     </script>
 
 </body>
