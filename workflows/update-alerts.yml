@@ -1,0 +1,28 @@
+name: Update Alerts
+
+# מתי להריץ
+on:
+  schedule:
+    - cron: "*/3 * * * *" # כל חצי שעה
+  workflow_dispatch: # מאפשר הרצה ידנית
+
+jobs:
+  update-alerts:
+    runs-on: ubuntu-latest
+    steps:
+      # שלב 1: checkout
+      - uses: actions/checkout@v3
+
+      # שלב 2: הורדת הנתונים עם proxy כדי לעקוף CORS
+      - name: Download alerts JSON
+        run: |
+          curl -s "https://api.allorigins.win/raw?url=https://www.oref.org.il/WarningMessages/alert/alerts.json" -o data/alerts.json
+
+      # שלב 3: commit & push
+      - name: Commit and push updates
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/alerts.json
+          git commit -m "Auto-update alerts.json" || echo "No changes to commit"
+          git push
