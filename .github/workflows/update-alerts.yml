@@ -1,23 +1,31 @@
 name: Update Alerts
 
+# מתי להריץ
 on:
   push:
     branches:
-      - main
+      - main       # החלף בשם הענף שלך אם שונה
   schedule:
-    - cron: "*/30 * * * *"
-  workflow_dispatch:
+    - cron: "*/30 * * * *"  # כל חצי שעה
+  workflow_dispatch:        # אפשר להריץ ידנית
+
+# Force Node.js 24 עבור פעולות JavaScript
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   update-alerts:
     runs-on: ubuntu-latest
     steps:
+      # Checkout הקוד
       - uses: actions/checkout@v3
 
+      # הורדת הנתונים דרך proxy כדי לעקוף CORS
       - name: Download alerts JSON
         run: |
           curl -s "https://api.allorigins.win/raw?url=https://www.oref.org.il/WarningMessages/alert/alerts.json" -o data/alerts.json
 
+      # Commit ו-Push עם token מתאים
       - name: Commit and push updates
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
