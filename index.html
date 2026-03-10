@@ -117,11 +117,11 @@
 
     <h1>דשבורד מודיעין שיגורי רקטות</h1>
 
-    <div id="controls">
+    <!-- <div id="controls">
         <input type="file" id="fileInput" multiple accept=".json">
         <div id="drop">גרור לכאן קבצי JSON</div>
         <input type="text" id="search" placeholder="חיפוש עיר">
-    </div>
+    </div> -->
 
     <div id="stats">
         <div class="card">סה״כ שיגורים: <b id="statLaunches">0</b></div>
@@ -296,62 +296,62 @@
         }
 
         /* ---------- File loading ---------- */
-        function handleFiles(files) {
-            const readers = [];
-            for (const file of files) {
-                readers.push(new Promise(resolve => {
-                    const r = new FileReader();
-                    r.onload = e => {
-                        const json = safeParseJSON(e.target.result);
-                        const arr = normalizeToArray(json);
-                        resolve(arr);
-                    };
-                    r.onerror = () => resolve([]);
-                    r.readAsText(file);
-                }));
-            }
+        // function handleFiles(files) {
+        //     const readers = [];
+        //     for (const file of files) {
+        //         readers.push(new Promise(resolve => {
+        //             const r = new FileReader();
+        //             r.onload = e => {
+        //                 const json = safeParseJSON(e.target.result);
+        //                 const arr = normalizeToArray(json);
+        //                 resolve(arr);
+        //             };
+        //             r.onerror = () => resolve([]);
+        //             r.readAsText(file);
+        //         }));
+        //     }
 
-            Promise.all(readers).then(results => {
-                for (const arr of results) {
-                    for (const a of arr) state.alerts.push(a);
-                }
-                processAlerts();
-                render();
-            });
-        }
+        //     Promise.all(readers).then(results => {
+        //         for (const arr of results) {
+        //             for (const a of arr) state.alerts.push(a);
+        //         }
+        //         processAlerts();
+        //         render();
+        //     });
+        // }
 
         /* ---------- Events ---------- */
-        document.getElementById("fileInput").addEventListener("change", e => {
-            resetState();
-            handleFiles(e.target.files);
-        });
+        // document.getElementById("fileInput").addEventListener("change", e => {
+        //     resetState();
+        //     handleFiles(e.target.files);
+        // });
 
-        const drop = document.getElementById("drop");
+        // const drop = document.getElementById("drop");
 
-        drop.addEventListener("dragover", e => {
-            e.preventDefault();
-            drop.classList.add("drag");
-        });
+        // drop.addEventListener("dragover", e => {
+        //     e.preventDefault();
+        //     drop.classList.add("drag");
+        // });
 
-        drop.addEventListener("dragleave", () => {
-            drop.classList.remove("drag");
-        });
+        // drop.addEventListener("dragleave", () => {
+        //     drop.classList.remove("drag");
+        // });
 
-        drop.addEventListener("drop", e => {
-            e.preventDefault();
-            drop.classList.remove("drag");
-            resetState();
-            handleFiles(e.dataTransfer.files);
-        });
+        // drop.addEventListener("drop", e => {
+        //     e.preventDefault();
+        //     drop.classList.remove("drag");
+        //     resetState();
+        //     handleFiles(e.dataTransfer.files);
+        // });
 
-        document.getElementById("search").addEventListener("input", function () {
-            const text = this.value;
-            const rows = document.querySelectorAll("#cityTable tbody tr");
-            rows.forEach(r => {
-                const city = r.children[0].textContent;
-                r.style.display = city.includes(text) ? "" : "none";
-            });
-        });
+        // document.getElementById("search").addEventListener("input", function () {
+        //     const text = this.value;
+        //     const rows = document.querySelectorAll("#cityTable tbody tr");
+        //     rows.forEach(r => {
+        //         const city = r.children[0].textContent;
+        //         r.style.display = city.includes(text) ? "" : "none";
+        //     });
+        // });
 
         document.addEventListener("DOMContentLoaded", function () {
 
