@@ -355,7 +355,7 @@
 
         document.addEventListener("DOMContentLoaded", function () {
 
-    fetch("./M_I.json")
+    fetch("./M_I.json?v=" + Date.now())
         .then(r => r.json())
         .then(data => {
 
