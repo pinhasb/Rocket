@@ -1,7 +1,10 @@
-<html>
-<head><title>500 Internal Server Error</title></head>
-<body>
-<center><h1>500 Internal Server Error</h1></center>
-<hr><center>nginx/1.22.1</center>
-</body>
-</html>
+<HTML><HEAD>
+<TITLE>Access Denied</TITLE>
+</HEAD><BODY>
+<H1>Access Denied</H1>
+ 
+You don't have permission to access "http&#58;&#47;&#47;www&#46;oref&#46;org&#46;il&#47;WarningMessages&#47;alert&#47;alerts&#46;json" on this server.<P>
+Reference&#32;&#35;18&#46;8c643717&#46;1773187217&#46;10b4eca
+<P>https&#58;&#47;&#47;errors&#46;edgesuite&#46;net&#47;18&#46;8c643717&#46;1773187217&#46;10b4eca</P>
+</BODY>
+</HTML>
