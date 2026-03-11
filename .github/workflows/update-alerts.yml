@@ -37,11 +37,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/alerts.json
+          #git add data/alerts.json
           # רק אם יש שינויים בקובץ, נבצע Commit
           if git diff --quiet && git diff --staged --quiet; then
             echo "No changes to commit"
           else
             git commit -m "Auto-update alerts.json"
-            git push
+           # git push
           fi
