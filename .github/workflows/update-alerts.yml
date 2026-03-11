@@ -27,7 +27,11 @@ jobs:
 
       - name: Download alerts JSON
         run: |
-          curl -s "https://api.allorigins.win/raw?url=https://www.oref.org.il/WarningMessages/alert/alerts.json" -o data/alerts.json
+          curl -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+          -H "Referer: https://www.oref.org.il/" \
+          -H "X-Requested-With: XMLHttpRequest" \
+          -s "https://www.oref.org.il/WarningMessages/alert/alerts.json" -o data/alerts.json
+
 
       - name: Commit and push updates
         run: |
